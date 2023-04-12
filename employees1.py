@@ -15,7 +15,7 @@ Análisis de datos para el fenómeno de deserción laboral
 que tanto afecta en la actualidad a las empresas y organizaciones
 """)
 
-@st.cache
+@st.cache_data
 def load_data(nrows):
     doc = codecs.open('Employees.csv','rU','latin1')
     data = pd.read_csv(doc, nrows=nrows)
@@ -70,19 +70,19 @@ tituloHometown = st.sidebar.text_input('Hometown :')
 btnBuscarCdNtl = st.sidebar.button('Buscar Hometown')	
 
 if (btnBuscarCdNtl):
-   data_emp = filter_data_by_Hometown(tituloHometown.upper())
-   count_row = data_emp.shape[0]  # Gives number of rows
-   st.write(f"Total Ciudades Mostradas : {count_row}")
-   st.write(data_emp)	
+    data_emp = filter_data_by_Hometown(tituloHometown.upper())
+    count_row = data_emp.shape[0]  # Gives number of rows
+    st.write(f"Total Ciudades Mostradas : {count_row}")
+    st.write(data_emp)	
 
 tituloUnit = st.sidebar.text_input('Unit :')
 btnBuscarUnit = st.sidebar.button('Buscar Unit')	
 
 if (btnBuscarUnit):
-   data_emp = filter_data_by_Unit(tituloUnit.upper())
-   count_row = data_emp.shape[0]  # Gives number of rows
-   st.write(f"Total de Unidades Mostradas : {count_row}")
-   st.write(data_emp)	
+    data_emp = filter_data_by_Unit(tituloUnit.upper())
+    count_row = data_emp.shape[0]  # Gives number of rows
+    st.write(f"Total de Unidades Mostradas : {count_row}")
+    st.write(data_emp)	
 
 # Creamos selectbox
 # Nivel Educativo
@@ -90,29 +90,29 @@ selected_EdLvl= st.sidebar.selectbox("Seleccionar Nivel Educativo", data['Educat
 btnFilterbyEdLvl = st.sidebar.button('Filtrar Nivel Educativo')
 
 if (btnFilterbyEdLvl):
-   filterbyEdLvl = filter_data_by_EdLvl(selected_EdLvl)
-   count_row = filterbyEdLvl.shape[0]  # Gives number of rows
-   st.write(f"Frecuencia : {count_row}")
-   st.dataframe(filterbyEdLvl)
+    filterbyEdLvl = filter_data_by_EdLvl(selected_EdLvl)
+    count_row = filterbyEdLvl.shape[0]  # Gives number of rows
+    st.write(f"Frecuencia : {count_row}")
+    st.dataframe(filterbyEdLvl)
 
 #Ciudad
 selected_CdNtl= st.sidebar.selectbox("Seleccionar Ciudad", data['Hometown'].unique())
 btnFilterbyCdNtl = st.sidebar.button('Filtrar por Ciudad')	 
 
 if (btnFilterbyCdNtl):
-   filterbyCdNtl = filter_data_by_HometownFull(selected_CdNtl)
-   count_row = filterbyCdNtl.shape[0]  # Gives number of rows
-   st.write(f"Total de empleados : {count_row}")
-   st.dataframe(filterbyCdNtl)
+    filterbyCdNtl = filter_data_by_HometownFull(selected_CdNtl)
+    count_row = filterbyCdNtl.shape[0]  # Gives number of rows
+    st.write(f"Total de empleados : {count_row}")
+    st.dataframe(filterbyCdNtl)
 
 selected_Unit = st.sidebar.selectbox("Seleccionar Unidad", data['Unit'].unique())
 btnFilterbyUnit= st.sidebar.button('Buscar Unidad')	
 
 if (btnFilterbyUnit):
-   filterbyUnit = filter_data_by_UnitFull(selected_Unit)
-   count_row = filterbyUnit.shape[0]  # Gives number of rows
-   st.write(f"Total de empleados : {count_row}")
-   st.dataframe(filterbyUnit)
+    filterbyUnit = filter_data_by_UnitFull(selected_Unit)
+    count_row = filterbyUnit.shape[0]  # Gives number of rows
+    st.write(f"Total de empleados : {count_row}")
+    st.dataframe(filterbyUnit)
 
 #Histograma
 fig, ax = plt.subplots()
